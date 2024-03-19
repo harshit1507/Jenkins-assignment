@@ -4,14 +4,9 @@ pipeline {
   stages {
     stage("Build") {
       steps {
+        sh "mvn -v"
         sh "mvn package"
       }
-    }
-  }
-
-  post {
-    always {
-      cleanWs()
     }
   }
 }
