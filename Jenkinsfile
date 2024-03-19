@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage("Docker Build") {
       steps {
-        bat "docker build -t harshit1507/java-spark:latest ."
+        bat "docker build -t harshit150796/java-spark:latest ."
       }
     }
 
@@ -28,7 +28,7 @@ pipeline {
             bat "docker login -u $USER -p $PASSWORD ${registry_url}"
             docker.withRegistry("http://${registry_url}", "dockerhub") {
             // Push your image now
-            bat "docker push harshit1507/java-spark:latest"
+            bat "docker push harshit150796/java-spark:latest"
         }
         }
         
