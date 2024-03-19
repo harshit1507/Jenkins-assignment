@@ -1,15 +1,28 @@
 pipeline {
   agent {
-    dockerfile {
-      //image "maven:3.6.0-jdk-13"
-    }
+    any
+  }
+
+  environment {
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
 
   stages {
-    stage("Build") {
+    stage("Docker Build") {
       steps {
-        bat "mvn -v"
-        bat "mvn package"
+        bat "docker build -t harshit1507/java-spark:latest"
+      }
+    }
+
+    stage("Login to Docker Hub") {
+      steps {
+        bat "echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+      }
+    }
+
+    stage("Docker Push") {
+      steps {
+        bat "docker push harshit1507/java-spark:latest"
       }
     }
   }
