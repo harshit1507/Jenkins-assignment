@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    any {
-      image "ubuntu"
-    }
-  }
+  agent any
 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
@@ -12,19 +8,19 @@ pipeline {
   stages {
     stage("Docker Build") {
       steps {
-        sh "docker build -t harshit1507/java-spark:latest ."
+        bat "docker build -t harshit1507/java-spark:latest ."
       }
     }
 
     stage("Login to Docker Hub") {
       steps {
-        sh "echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
+        bat "echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin"
       }
     }
 
     stage("Docker Push") {
       steps {
-        sh "docker push harshit1507/java-spark:latest"
+        bat "docker push harshit1507/java-spark:latest"
       }
     }
   }
