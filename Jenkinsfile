@@ -20,7 +20,7 @@ pipeline {
     // }
 
     stage("Docker Push") {
-      steps {
+      // steps {
         //bat "docker push harshit1507/java-spark:latest"
 
         withCredentials([usernamePassword( credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
@@ -31,7 +31,7 @@ pipeline {
             bat "docker push harshit1507/java-spark:latest"
         }
       }
-    }
+    // }
   }
 }
 
