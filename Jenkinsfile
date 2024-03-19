@@ -1,6 +1,6 @@
 pipeline {
   agent dockerfile
-  }
+  
 
   environment {
     DOCKERHUB_CREDENTIALS = credentials('dockerhub')
