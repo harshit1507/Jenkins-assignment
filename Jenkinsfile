@@ -8,7 +8,7 @@ pipeline {
   stages {
     stage("Docker Build") {
       steps {
-        bat "docker build -t harshit1507/java-spark:latest"
+        bat "docker build -t harshit1507/java-spark:latest ."
       }
     }
 
