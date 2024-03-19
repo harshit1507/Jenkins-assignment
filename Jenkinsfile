@@ -1,6 +1,5 @@
 pipeline {
-  agent {
-    dockerfile
+  agent dockerfile
   }
 
   environment {
